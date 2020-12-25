@@ -24,6 +24,13 @@ Access on your browser
 http://localhost:8081
 ```
 
+## Screenshots
+
+If everything is running ok, you will see the following screen if you access `http://localhost:8081`
+
+![Screen Shot 2020-12-25 at 4 15 01 PM](https://user-images.githubusercontent.com/114015/103142130-61062f00-46cc-11eb-9a49-d2f3be7fe8ca.png)
+
+
 ## Architecture
 
 ![output](https://user-images.githubusercontent.com/114015/103141869-c48e5d80-46c8-11eb-891f-59cd893a487c.png)
