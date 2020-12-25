@@ -8,21 +8,18 @@ A simple grocery app running across multiple Docker containers
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-## Install
 
-Run the following command:
+## Getting started
 
-```console
+Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
+
+Clone this project and run it in this directory:
+
+```
 docker-compose up -d
 ```
 
-## Usage
-
-Access on your browser
-
-```url
-http://localhost:8081
-```
+The web app will be running at [http://localhost:8081](http://http://localhost:8081).
 
 ## Screenshots
 
