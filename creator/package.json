@@ -1,0 +1,17 @@
+{
+    "name": "creator",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon server.js"
+    },
+    "keywords": [],
+    "author": "Thiago Ferreira",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.21.1",
+        "unique-names-generator": "^4.3.1",
+        "nodemon": "^2.0.6"
+    }
+}
