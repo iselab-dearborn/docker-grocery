@@ -1,0 +1,24 @@
+digraph G {
+
+    margin=0;
+    #layout="circo";
+
+    graph[bgcolor=transparent]
+    edge [color="#8aa9c0", penwidth=3]
+
+    node [style=filled, fillcolor="#9e77a180", color="#9e77a1", penwidth=2, fontname = "helvetica"]
+
+    node [shape = circle, fixedsize=true, width=1.50] creator;
+    node [shape = circle, fixedsize=true, width=1.50] web;
+    node [shape = circle, fixedsize=true, width=1.50] api;
+    node [shape = circle, fixedsize=true, width=1.50] mongodb;
+    node [shape = circle, fixedsize=true, width=1.50] mongodbexpress;
+
+    creator -> api;
+
+    web -> api;
+    api -> mongodb;
+
+    mongodbexpress -> mongodb;
+
+}
