@@ -29,6 +29,7 @@ If everything is running ok, you will see the following screen if you access `ht
     <img src="https://user-images.githubusercontent.com/114015/103142130-61062f00-46cc-11eb-9a49-d2f3be7fe8ca.png"/>
 </kbd>
 <br/>
+<br/>
 
 All containers running:
 
