@@ -34,7 +34,9 @@ If everything is running ok, you will see the following screen if you access `ht
 
 ## Architecture
 
-![output](https://user-images.githubusercontent.com/114015/103141869-c48e5d80-46c8-11eb-891f-59cd893a487c.png)
+<kbd>
+    <img src="https://user-images.githubusercontent.com/114015/103141869-c48e5d80-46c8-11eb-891f-59cd893a487c.png"/>
+</kbd>
 
 - **web**: a front-end web app in Node.js which lets you access the list of products
 
