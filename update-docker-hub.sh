@@ -1,10 +1,16 @@
 #!/bin/sh
 
-docker build -t iselabdearborn/docker-grocery-api ./api
+cd api
+docker build -t iselabdearborn/docker-grocery-api .
 docker push iselabdearborn/docker-grocery-api
+cd ..
 
-docker build -t iselabdearborn/docker-grocery-creator ./creator
+cd creator
+docker build -t iselabdearborn/docker-grocery-creator .
 docker push iselabdearborn/docker-grocery-creator
+cd ..
 
-docker build -t iselabdearborn/docker-grocery-web ./web
+cd web
+docker build -t iselabdearborn/docker-grocery-web .
 docker push iselabdearborn/docker-grocery-web
+cd ..
