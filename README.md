@@ -15,8 +15,8 @@ Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Ma
 
 Clone this project and run it in this directory:
 
-```
-docker-compose up -d
+```console
+docker-compose -f docker-compose.dev.yml up
 ```
 
 The web app will be running at [http://localhost:8081](http://http://localhost:8081).
@@ -53,7 +53,7 @@ All containers running:
 
 ## For Developers
 
-If you want to edit this project, please run the following command
+If you want to create an image and publish it on Docker Hub, you need to run the following command for all projects
 
 ```console
 docker-compose -f docker-compose.dev.yml up
