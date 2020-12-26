@@ -53,10 +53,10 @@ All containers running:
 
 ## For Developers
 
-If you want to create an image and publish it on Docker Hub, you need to run the following command for all projects
+If you want to run this project on Docker Swarm, you need to update Docker Hub
 
 ```console
-docker-compose -f docker-compose.dev.yml up
+sh update-docker-hub.sh
 ```
 
 ## Questions or Suggestions
