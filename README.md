@@ -51,6 +51,14 @@ All containers running:
 
 - **mongodbexpress**: a web-based MongoDB admin interface
 
+## For Developers
+
+If you want to edit this project, please run the following command
+
+```console
+docker-compose -f docker-compose.dev.yml up
+```
+
 ## Questions or Suggestions
 
 Feel free to create <a href="https://github.com/iselab-dearborn/docker-grocery/issues">issues</a> here as you need
