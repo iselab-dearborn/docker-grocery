@@ -4,8 +4,12 @@ services:
 
   api:
     image: iselabdearborn/docker-grocery-api
-    container_name: 'api'
-    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     ports:
       - 3000:3000
     environment:
@@ -14,22 +18,34 @@ services:
       - ./api:/usr/app
     depends_on:
       - mongodb
+    networks:
+      - app
 
   creator:
     image: iselabdearborn/docker-grocery-creator
-    container_name: 'creator'
-    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     environment:
       API_URL: http://api:3000/api
     volumes:
       - ./creator:/usr/app
     depends_on:
       - api
+    networks:
+      - app
 
   web:
     image: iselabdearborn/docker-grocery-web
-    container_name: 'web'
-    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     environment:
       API_URL: http://api:3000/api
     ports:
@@ -38,21 +54,33 @@ services:
       - ./web:/usr/app
     depends_on:
       - api
+    networks:
+      - app
 
   mongodb:
-    container_name: 'mongodb'
     image: mongo:4.4.2
-    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     ports:
       - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - app
 
   mongodbexpress:
-    container_name: 'mongodbexpress'
     image: mongo-express:0.54
-    restart: always
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
     ports:
       - 8000:8081
     environment:
@@ -61,3 +89,9 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: admin
     depends_on:
       - mongodb
+    networks:
+      - app
+
+networks:
+  app:
+    driver: overlay
