@@ -16,6 +16,17 @@ const api = axios.create({
     baseURL: API_URL
 });
 
+function sendRequest(){
+
+    api.get(`/products/count`).then(function (response) {
+
+        console.log(response.data)
+
+    }).catch(function (error) {
+        console.log(error)
+    });
+}
+
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -59,3 +70,6 @@ app.get('/', function(req, res) {
 app.listen(PORT, HOST, () => {
     console.log("Magic happens on PORT", PORT);
 });
+
+setInterval(sendRequest, 5 * 1000);
+

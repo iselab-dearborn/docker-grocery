@@ -1,5 +1,15 @@
 const productModel = require("../models/product.model");
 
+exports.count = async (req, res) => {
+
+    productModel.count({}, function( err, count){
+
+        res.send({
+            data: count
+        });
+    });
+}
+
 exports.getAll = async (req, res) => {
 
     let page = req.query.page || undefined;
