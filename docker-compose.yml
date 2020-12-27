@@ -9,7 +9,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      DATABASE_URL: mongodb://admin:admin@mongodb:27017
+      DATABASE_URL: mongodb://admin:admin@127.0.0.1:27017
     volumes:
       - ./api:/usr/app
     depends_on:
