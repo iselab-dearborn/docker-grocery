@@ -101,8 +101,8 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-      networks:
-        - app
+    networks:
+      - app
 
 networks:
   app:
