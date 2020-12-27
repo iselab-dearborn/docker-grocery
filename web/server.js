@@ -39,11 +39,20 @@ app.get('/', function(req, res) {
             nextPage: page+1,
             previousPage: page-1,
             perPage: perPage,
-            products: response.data
+            products: response.data,
+            error: undefined
         });
 
     }).catch(function (error) {
-        res.redirect('/');
+
+        res.render('index', {
+            page: page,
+            nextPage: page+1,
+            previousPage: page-1,
+            perPage: perPage,
+            products: [],
+            error: error
+        });
     });
 });
 

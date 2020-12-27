@@ -12,26 +12,40 @@
     <div class="container-fluid">
         <h3 class="pb-2">Home</h3>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th style="width: 1px">Id</th>
-                    <th >createdAt</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% products.forEach(function(product){%>
+        <%= locals.error %>
+
+        <% if (locals.error) { %>
+            oi
+        <% } else { %>
+
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><%= product._id %></td>
-                        <td><%= product.createdAt %></td>
-                        <td><%= product.name %></td>
-                        <td><%= product.price %></td>
+                        <th style="width: 1px">Id</th>
+                        <th >createdAt</th>
+                        <th>Name</th>
+                        <th>Price</th>
                     </tr>
-                <% }); %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                    <% if (locals.products) { %>
+
+                        <% products.forEach(function(product){%>
+                            <tr>
+                                <td><%= product._id %></td>
+                                <td><%= product.createdAt %></td>
+                                <td><%= product.name %></td>
+                                <td><%= product.price %></td>
+                            </tr>
+                        <% }); %>
+
+                    <% } %>
+
+                </tbody>
+            </table>
+
+        <% } %>
 
         <a style="width: 100px" class="btn btn-success" href="/?page=<%= previousPage %>">Previous</a>
         <a style="width: 100px" class="btn btn-success" href="/?page=<%= nextPage %>">Next</a>
