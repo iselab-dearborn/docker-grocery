@@ -15,7 +15,7 @@ services:
     environment:
       DATABASE_URL: mongodb://admin:admin@mongodb:27017
     volumes:
-      - data-volume:/usr/app
+      - data-volume:/usr/app/api
     depends_on:
       - mongodb
     networks:
@@ -32,7 +32,7 @@ services:
     environment:
       API_URL: http://api:3000/api
     volumes:
-      - data-volume:/usr/app
+      - data-volume:/usr/app/creator
     depends_on:
       - api
     networks:
@@ -51,7 +51,7 @@ services:
     ports:
       - 8081:3000
     volumes:
-      - data-volume:/usr/app
+      - data-volume:/usr/app/web
     depends_on:
       - api
     networks:
