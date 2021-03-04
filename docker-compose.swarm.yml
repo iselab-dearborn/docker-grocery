@@ -8,8 +8,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+       # constraints: [node.role == worker]
     ports:
       - 3000:3000
     environment:
@@ -27,8 +27,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
     environment:
       API_URL: http://api:3000/api
     volumes:
@@ -44,8 +44,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
     environment:
       API_URL: http://api:3000/api
     ports:
@@ -63,8 +63,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
     ports:
       - 27017:27017
     environment:
@@ -79,8 +79,8 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-      placement:
-        constraints: [node.role == worker]
+      #placement:
+      #  constraints: [node.role == worker]
     ports:
       - 8000:8081
     environment:
@@ -99,8 +99,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
-      placement:
-        constraints: [node.role == manager]
+      #placement:
+      #  constraints: [node.role == manager]
     networks:
       - app
 
