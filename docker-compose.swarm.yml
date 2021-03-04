@@ -59,7 +59,7 @@ services:
 
   mongodb:
    # image: mongo:4.4.2
-    image: webhippie/mongodb:4.4.2
+    image: webhippie/mongodb:latest
     deploy:
       replicas: 1
       restart_policy:
