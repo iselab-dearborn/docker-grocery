@@ -107,8 +107,6 @@ services:
 
 networks:
   app:
-    external:
-      name: blue-net
 
 volumes:
   data-volume:
