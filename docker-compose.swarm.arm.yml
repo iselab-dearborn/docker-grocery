@@ -105,6 +105,16 @@ services:
     networks:
       - app
 
+  cadvisor:
+    image: carlosedp/rpi-cadvisor:latest
+    ports:
+      - 8050:8080
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - app
+
 networks:
   app:
 
