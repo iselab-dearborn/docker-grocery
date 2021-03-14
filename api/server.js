@@ -29,10 +29,18 @@ mongoose.connection.on('connecting', err => {
 });
 
 mongoose.connection.on('error', err => {
+    
+    console.log('Error...');
+
     console.log(err);
+
+    if (!isConnectedBefore) {
+        connect();
+    }
 });
 
 mongoose.connection.on('disconnected', function(){
+    
     console.log('Lost MongoDB connection...');
     
     if (!isConnectedBefore) {
