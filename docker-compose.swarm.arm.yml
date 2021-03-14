@@ -68,7 +68,7 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGODB_AUTH: true
+      MONGODB_AUTH: "true"
       MONGODB_ROOT_USERNAME: admin
       MONGODB_ROOT_PASSWORD: admin
     networks:
