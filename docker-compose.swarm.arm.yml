@@ -113,6 +113,72 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    deploy:
+      mode: global
+    command:
+      - --global_housekeeping_interval=30s
+      - --housekeeping_interval=5s
+      - --storage_duration=1m0s
+    networks:
+      - app
+
+  node-exporter:
+    image: jmb12686/node-exporter
+    ports:
+      - 9100:9100
+    environment:
+      - NODE_ID={{.Node.ID}}
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /etc/hostname:/etc/nodename
+    command:
+      - '--path.sysfs=/host/sys'
+      - '--path.procfs=/host/proc'
+      - '--collector.textfile.directory=/etc/node-exporter/'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--no-collector.ipvs'
+    deploy:
+      mode: global
+    resources:
+      limits:
+        memory: 128M
+      reservations:
+        memory: 64M
+    networks:
+      - app
+
+  prometheus:
+    # if you'r using arm32 just replace anwargh/prometheus:arch64 with anwargh/prometheus:arch32
+    image: anwargh/prometheus:arch32
+    ports:
+         -  "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=${PROMETHEUS_RETENTION:-24h}'
+    volumes:
+      - prometheus:/prometheus
+    configs:
+      - source: node_rules
+        target: /etc/prometheus/swarm_node.rules.yml     
+    deploy:
+      mode: replicated
+    replicas: 1
+    placement:
+      constraints:
+        - node.role == manager
+    resources:
+      limits:
+        memory: 2048M
+      reservations:
+        memory: 128M
     networks:
       - app
 
