@@ -41,6 +41,7 @@ mongoose.connection.on('open', function() {
 });
 
 mongoose.connect(DATABASE_URL, {
+    autoReconnect: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
