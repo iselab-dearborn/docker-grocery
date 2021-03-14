@@ -59,7 +59,7 @@ services:
 
   mongodb:
    # image: mongo:4.4.2
-    image: malaslt/easygrow-local-rpi:latest
+    image: malaslt/mongodb-rpi:latest
     deploy:
       replicas: 1
       restart_policy:
