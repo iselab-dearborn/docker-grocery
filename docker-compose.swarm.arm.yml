@@ -1,0 +1,114 @@
+version: "3.8"
+
+services:
+
+  api:
+    image: iselabdearborn/docker-grocery-api
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      #placement:
+       # constraints: [node.role == worker]
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: mongodb://admin:admin@mongodb:27017
+    volumes:
+      - data-volume:/usr/app/api
+    depends_on:
+      - mongodb
+    networks:
+      - app
+
+  creator:
+    image: iselabdearborn/docker-grocery-creator
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      #placement:
+      #  constraints: [node.role == worker]
+    environment:
+      API_URL: http://api:3000/api
+    volumes:
+      - data-volume:/usr/app/creator
+    depends_on:
+      - api
+    networks:
+      - app
+
+  web:
+    image: iselabdearborn/docker-grocery-web
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      #placement:
+      #  constraints: [node.role == worker]
+    environment:
+      API_URL: http://api:3000/api
+    ports:
+      - 8081:3000
+    volumes:
+      - data-volume:/usr/app/web
+    depends_on:
+      - api
+    networks:
+      - app
+
+  mongodb:
+   # image: mongo:4.4.2
+    image: webhippie/mongodb:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      #placement:
+      #  constraints: [node.role == worker]
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - app
+
+  mongodbexpress:
+    image: mongo-express:0.54
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      #placement:
+      #  constraints: [node.role == worker]
+    ports:
+      - 8000:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+    depends_on:
+      - mongodb
+    networks:
+      - app
+
+  visualizer:
+    image: alexellis2/visualizer-arm:latest
+    ports:
+      - 8070:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      #placement:
+      #  constraints: [node.role == manager]
+    networks:
+      - app
+
+networks:
+  app:
+    driver: overlay
+
+volumes:
+  data-volume:
+    driver: local
