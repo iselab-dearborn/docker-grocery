@@ -58,7 +58,6 @@ services:
       - app
 
   mongo:
-    container_name: mongo
     image: webhippie/mongodb:latest
     deploy:
       replicas: 1
@@ -69,6 +68,7 @@ services:
     ports:
       - 27017:27017
     environment:
+      MONGODB_AUTH: true
       MONGODB_ROOT_USERNAME: admin
       MONGODB_ROOT_PASSWORD: admin
     networks:
