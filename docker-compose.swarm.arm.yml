@@ -58,7 +58,7 @@ services:
       - app
 
   mongo:
-   # image: mongo:4.4.2
+    container_name: mongo
     image: webhippie/mongodb:latest
     deploy:
       replicas: 1
