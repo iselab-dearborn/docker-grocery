@@ -146,11 +146,11 @@ services:
       - '--no-collector.ipvs'
     deploy:
       mode: global
-    resources:
-      limits:
-        memory: 128M
-      reservations:
-        memory: 64M
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
     networks:
       - app
 
@@ -170,15 +170,15 @@ services:
         target: /etc/prometheus/swarm_node.rules.yml     
     deploy:
       mode: replicated
-    replicas: 1
-    placement:
-      constraints:
-        - node.role == manager
-    resources:
-      limits:
-        memory: 2048M
-      reservations:
-        memory: 128M
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 128M
     networks:
       - app
 
