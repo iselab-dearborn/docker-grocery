@@ -194,4 +194,4 @@ volumes:
 
 configs:
   node_rules:
-    file: ./prometheus/rules/swarm_node.rules.yml
+    file: ./swarm_node.rules.yml
