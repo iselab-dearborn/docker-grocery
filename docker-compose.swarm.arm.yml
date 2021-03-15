@@ -117,8 +117,6 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     deploy:
       mode: global
-      placement:
-        constraints: [node.role == manager]
     command:
       - --global_housekeeping_interval=30s
       - --housekeeping_interval=5s
