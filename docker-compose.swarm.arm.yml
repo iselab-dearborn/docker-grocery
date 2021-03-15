@@ -188,8 +188,6 @@ networks:
 volumes:
   data-volume:
     driver: local
-
-volumes:
   prometheus: {}
 
 configs:
