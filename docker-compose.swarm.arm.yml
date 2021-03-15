@@ -188,3 +188,10 @@ networks:
 volumes:
   data-volume:
     driver: local
+
+volumes:
+  prometheus: {}
+
+configs:
+  node_rules:
+    file: ./prometheus/rules/swarm_node.rules.yml
