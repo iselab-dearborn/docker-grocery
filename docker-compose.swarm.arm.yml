@@ -117,7 +117,6 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     deploy:
       mode: global
-      replicas: 1
       placement:
         constraints: [node.role == manager]
     command:
@@ -146,7 +145,6 @@ services:
       - '--no-collector.ipvs'
     deploy:
       mode: global
-      replicas: 1
       resources:
         limits:
           memory: 128M
