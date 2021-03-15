@@ -155,10 +155,9 @@ services:
       - app
 
   prometheus:
-    # if you'r using arm32 just replace anwargh/prometheus:arch64 with anwargh/prometheus:arch32
     image: anwargh/prometheus:arch32
     ports:
-         -  "9090:9090"
+      - "9090:9090"
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
